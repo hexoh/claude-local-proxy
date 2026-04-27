@@ -162,7 +162,7 @@ export async function modelSetupCommand() {
     console.log('=== Claude Code Model Configuration ===\n');
 
     if (!fs.existsSync(getConfigPath())) {
-      logger.logError('Configuration file does not exist. Please run: cnp config');
+      logger.logError('Configuration file does not exist. Please run: clp config');
       process.exit(1);
     }
 
@@ -170,7 +170,7 @@ export async function modelSetupCommand() {
     const models = readModelsFile();
 
     if (!models || models.length === 0) {
-      logger.logError('No models available. Please add models first using: cnp model add');
+      logger.logError('No models available. Please add models first using: clp model add');
       process.exit(1);
     }
 
@@ -248,7 +248,7 @@ export async function modelSetupCommand() {
 export async function modelHelpCommand() {
   console.log('Claude NVIDIA Proxy - Model Management');
   console.log('');
-  console.log('Usage: cnp model <command> [options]');
+  console.log('Usage: clp model <command> [options]');
   console.log('');
   console.log('Commands:');
   console.log('  list    List available models');
@@ -257,11 +257,11 @@ export async function modelHelpCommand() {
   console.log('  setup   Setup Claude Code model configuration');
   console.log('');
   console.log('Examples:');
-  console.log('  cnp model list');
-  console.log('  cnp model add z-ai/glm4.7');
-  console.log('  cnp model rm z-ai/glm4.7');
-  console.log('  cnp model rm 1');
-  console.log('  cnp model setup');
+  console.log('  clp model list');
+  console.log('  clp model add z-ai/glm4.7');
+  console.log('  clp model rm z-ai/glm4.7');
+  console.log('  clp model rm 1');
+  console.log('  clp model setup');
   console.log('');
   console.log('For more information, visit: https://github.com/hexoh/claude-nvidia-proxy');
 }

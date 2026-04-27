@@ -9,7 +9,7 @@ export async function testCommand(modelName) {
   const config = readConfigFile();
   
   if (!config?.NV_API_KEY) {
-    console.error('Error: NV_API_KEY not configured. Run: cnp config');
+    console.error('Error: NV_API_KEY not configured. Run: clp config');
     process.exit(1);
   }
 
@@ -19,7 +19,7 @@ export async function testCommand(modelName) {
     const models = readModelsFile();
     
     if (models.length === 0) {
-      console.error('Error: No models available. Run: cnp model add');
+      console.error('Error: No models available. Run: clp model add');
       process.exit(1);
     }
 
@@ -76,7 +76,7 @@ export async function testCommand(modelName) {
 export async function testHelpCommand() {
   console.log('Claude NVIDIA Proxy - Test Command');
   console.log('');
-  console.log('Usage: cnp test [model]');
+  console.log('Usage: clp test [model]');
   console.log('');
   console.log('Description:');
   console.log('  Test an NVIDIA model with a prompt and measure response time.');
@@ -85,7 +85,7 @@ export async function testHelpCommand() {
   console.log('  model     Optional model name (e.g., z-ai/glm4.7)');
   console.log('');
   console.log('Examples:');
-  console.log('  cnp test');
-  console.log('  cnp test z-ai/glm4.7');
+  console.log('  clp test');
+  console.log('  clp test z-ai/glm4.7');
   console.log('');
 }

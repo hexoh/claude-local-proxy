@@ -38,7 +38,7 @@ async function main() {
   if (command === '--help' || command === '-h') {
     console.log('Claude NVIDIA Proxy - CLI Tool');
     console.log('');
-    console.log('Usage: cnp <command> [options]');
+    console.log('Usage: clp <command> [options]');
     console.log('');
     console.log('Commands:');
     console.log('  start         Start the service');
@@ -70,14 +70,14 @@ async function main() {
     console.log('  test [model]     Test a model with a prompt');
     console.log('');
     console.log('Examples:');
-    console.log('  cnp start');
-    console.log('  cnp logs --tail');
-    console.log('  cnp logs --lines=100 --error');
-    console.log('  cnp model list');
-    console.log('  cnp model add z-ai/glm4.7');
-    console.log('  cnp model setup');
-    console.log('  cnp test');
-    console.log('  cnp test z-ai/glm4.7');
+    console.log('  clp start');
+    console.log('  clp logs --tail');
+    console.log('  clp logs --lines=100 --error');
+    console.log('  clp model list');
+    console.log('  clp model add z-ai/glm4.7');
+    console.log('  clp model setup');
+    console.log('  clp test');
+    console.log('  clp test z-ai/glm4.7');
     process.exit(0);
   }
 
@@ -129,7 +129,7 @@ async function main() {
           break;
         default:
           console.log(`Unknown model command: ${subCommand}`);
-          console.log('Run "cnp model --help" for available commands');
+          console.log('Run "clp model --help" for available commands');
           process.exit(1);
       }
       break;
@@ -143,7 +143,7 @@ async function main() {
     default:
       console.log('Claude NVIDIA Proxy - CLI Tool');
       console.log('');
-      console.log('Usage: cnp <command> [options]');
+      console.log('Usage: clp <command> [options]');
       console.log('');
       console.log('Commands:');
       console.log('  start         Start the service');
@@ -174,14 +174,14 @@ console.log('Model command options:');
     console.log('  test [model]     Test a model with a prompt');
     console.log('');
     console.log('Examples:');
-    console.log('  cnp start');
-    console.log('  cnp logs --tail');
-    console.log('  cnp logs --lines=100 --error');
-    console.log('  cnp model list');
-    console.log('  cnp model add z-ai/glm4.7');
-    console.log('  cnp model setup');
-    console.log('  cnp test');
-    console.log('  cnp test z-ai/glm4.7');
+    console.log('  clp start');
+    console.log('  clp logs --tail');
+    console.log('  clp logs --lines=100 --error');
+    console.log('  clp model list');
+    console.log('  clp model add z-ai/glm4.7');
+    console.log('  clp model setup');
+    console.log('  clp test');
+    console.log('  clp test z-ai/glm4.7');
     process.exit(0);
   }
 }

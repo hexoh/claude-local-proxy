@@ -1,11 +1,11 @@
 {
-  "name": "claude-nvidia-proxy",
+  "name": "claude-local-proxy",
   "version": "1.0.0",
-  "description": "A proxy server that converts Anthropic API requests to NVIDIA API format",
+  "description": "A proxy server that converts Anthropic protocol requests into the OpenAI protocol format.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "cnp": "./dist/cli/index.js"
+    "clp": "./dist/cli/index.js"
   },
   "type": "module",
   "scripts": {

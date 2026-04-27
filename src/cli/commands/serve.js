@@ -13,7 +13,7 @@ export async function serveCommand() {
 
   try {
     if (!fs.existsSync(getConfigPath())) {
-      logger.logError('Configuration file does not exist. Please run: cnp config');
+      logger.logError('Configuration file does not exist. Please run: clp config');
       process.exit(1);
     }
 

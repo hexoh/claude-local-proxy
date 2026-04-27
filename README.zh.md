@@ -57,7 +57,7 @@ node dist/cli/index.js start
 ## 快速开始
 
 ```bash
-cnp start
+clp start
 ```
 
 如果没有配置文件，服务会自动引导你进行配置：
@@ -72,12 +72,12 @@ listening on localhost:8888
 
 1. **启动服务**（如无配置会自动引导）：
    ```bash
-   cnp start
+   clp start
    ```
 
 2. **配置 Claude Code 模型**（推荐）：
    ```bash
-   cnp model setup
+   clp model setup
    ```
    
    这将引导你分别为 HAIKU、SONNET 和 OPUS 选择模型：
@@ -123,22 +123,22 @@ listening on localhost:8888
 
 ### 其他命令
 
-- `cnp config` - 配置或重新配置代理（需要 NVIDIA API Key）
-- `cnp start` - 启动代理服务
-- `cnp stop` - 停止代理服务
-- `cnp restart` - 重启代理服务
-- `cnp status` - 查看服务状态
-- `cnp logs` - 查看最近日志
-- `cnp logs --tail` - 实时跟踪日志
-- `cnp logs --lines=100` - 查看最近 N 行日志
-- `cnp logs --error` - 只查看错误日志
-- `cnp logs --access` - 只查看访问日志
-- `cnp model list` - 列出可用模型
-- `cnp model add <model>` - 添加新模型（如：`cnp model add z-ai/glm4.7`）
-- `cnp model rm <model>` - 删除模型（按名称或索引）
-- `cnp model setup` - 配置 Claude Code 模型层级（HAIKU、SONNET、OPUS）
-- `cnp test` - 测试所有可用模型
-- `cnp test <model>` - 测试指定模型
+- `clp config` - 配置或重新配置代理（需要 NVIDIA API Key）
+- `clp start` - 启动代理服务
+- `clp stop` - 停止代理服务
+- `clp restart` - 重启代理服务
+- `clp status` - 查看服务状态
+- `clp logs` - 查看最近日志
+- `clp logs --tail` - 实时跟踪日志
+- `clp logs --lines=100` - 查看最近 N 行日志
+- `clp logs --error` - 只查看错误日志
+- `clp logs --access` - 只查看访问日志
+- `clp model list` - 列出可用模型
+- `clp model add <model>` - 添加新模型（如：`clp model add z-ai/glm4.7`）
+- `clp model rm <model>` - 删除模型（按名称或索引）
+- `clp model setup` - 配置 Claude Code 模型层级（HAIKU、SONNET、OPUS）
+- `clp test` - 测试所有可用模型
+- `clp test <model>` - 测试指定模型
 
 ## 配置
 
@@ -237,7 +237,7 @@ curl -X POST http://localhost:8888/v1/messages \
 推荐使用 `model setup` 命令自动配置 Claude Code：
 
 ```bash
-cnp model setup
+clp model setup
 ```
 
 此命令会：
@@ -254,9 +254,9 @@ cnp model setup
 
 使用 `model setup` 前可管理模型列表：
 
-- `cnp model list` - 列出可用模型
-- `cnp model add <model>` - 添加新模型（如：`cnp model add z-ai/glm4.7`）
-- `cnp model rm <model>` - 删除模型（按名称或索引，如 `cnp model rm z-ai/glm4.7` 或 `cnp model rm 1`）
+- `clp model list` - 列出可用模型
+- `clp model add <model>` - 添加新模型（如：`clp model add z-ai/glm4.7`）
+- `clp model rm <model>` - 删除模型（按名称或索引，如 `clp model rm z-ai/glm4.7` 或 `clp model rm 1`）
 
 **注意：**
 - 添加时如已存在会提示 "Model already exists"
@@ -296,12 +296,12 @@ cnp model setup
 
 1. 检查配置是否存在：
    ```bash
-   cnp status
+   clp status
    ```
 
 2. 运行配置命令：
    ```bash
-   cnp config
+   clp config
    ```
 
 3. 检查端口是否被占用：
@@ -314,23 +314,23 @@ cnp model setup
 
 4. 查看错误日志：
    ```bash
-   cnp logs --error
+   clp logs --error
    ```
 
 ### 重置配置
 
 ```bash
 rm ~/.claude-nvidia-proxy/settings.json
-cnp config
+clp config
 ```
 
 ### 重置 Claude Code 配置
 
 ```bash
-cnp stop
+clp stop
 # 或手动删除备份后重新配置
 rm ~/.claude/settings.json.claude-nvidia-proxy.bak
-cnp model setup
+clp model setup
 ```
 
 ## 许可证

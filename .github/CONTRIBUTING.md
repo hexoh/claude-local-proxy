@@ -160,10 +160,10 @@ npm run build
 
 ```bash
 # Interactive model selection
-cnp test
+clp test
 
 # Test with specific model
-cnp test z-ai/glm4.7
+clp test z-ai/glm4.7
 ```
 
 ### Run Tests

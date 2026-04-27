@@ -59,7 +59,7 @@ node dist/cli/index.js start
 ### Quick Start
 
 ```bash
-cnp start
+clp start
 ```
 
 If no configuration exists, the service will automatically prompt you to configure:
@@ -74,12 +74,12 @@ listening on localhost:8888
 
 1. **Start service** (auto-configure if needed):
    ```bash
-   cnp start
+   clp start
    ```
 
 2. **Configure Claude Code models** (recommended):
    ```bash
-   cnp model setup
+   clp model setup
    ```
    
    This will guide you to select models for HAIKU, SONNET, and OPUS:
@@ -127,22 +127,22 @@ listening on localhost:8888
 
 ### Other Commands
 
-- `cnp config` - Configure or reconfigure the proxy (requires NVIDIA API Key)
-- `cnp start` - Start the proxy service
-- `cnp stop` - Stop the proxy service
-- `cnp restart` - Restart the proxy service
-- `cnp status` - View service status
-- `cnp logs` - View recent logs
-- `cnp logs --tail` - Follow logs in real-time
-- `cnp logs --lines=100` - View last N lines
-- `cnp logs --error` - View error logs only
-- `cnp logs --access` - View access logs only
-- `cnp model list` - List available models
-- `cnp model add <model>` - Add a new model (e.g., `cnp model add z-ai/glm4.7`)
-- `cnp model rm <model>` - Remove a model (by name or index)
-- `cnp model setup` - Configure Claude Code model tiers (HAIKU, SONNET, OPUS)
-- `cnp test` - Test all available models
-- `cnp test <model>` - Test a specific model
+- `clp config` - Configure or reconfigure the proxy (requires NVIDIA API Key)
+- `clp start` - Start the proxy service
+- `clp stop` - Stop the proxy service
+- `clp restart` - Restart the proxy service
+- `clp status` - View service status
+- `clp logs` - View recent logs
+- `clp logs --tail` - Follow logs in real-time
+- `clp logs --lines=100` - View last N lines
+- `clp logs --error` - View error logs only
+- `clp logs --access` - View access logs only
+- `clp model list` - List available models
+- `clp model add <model>` - Add a new model (e.g., `clp model add z-ai/glm4.7`)
+- `clp model rm <model>` - Remove a model (by name or index)
+- `clp model setup` - Configure Claude Code model tiers (HAIKU, SONNET, OPUS)
+- `clp test` - Test all available models
+- `clp test <model>` - Test a specific model
 
 ## Configuration
 
@@ -241,7 +241,7 @@ curl -X POST http://localhost:8888/v1/messages \
 Recommended to use `model setup` command to automatically configure Claude Code:
 
 ```bash
-cnp model setup
+clp model setup
 ```
 
 This command will:
@@ -258,9 +258,9 @@ This command will:
 
 Before using `model setup`, manage the available models:
 
-- `cnp model list` - List available models
-- `cnp model add <model>` - Add a new model (e.g., `cnp model add z-ai/glm4.7`)
-- `cnp model rm <model>` - Remove a model (by name or index, e.g., `cnp model rm z-ai/glm4.7` or `cnp model rm 1`)
+- `clp model list` - List available models
+- `clp model add <model>` - Add a new model (e.g., `clp model add z-ai/glm4.7`)
+- `clp model rm <model>` - Remove a model (by name or index, e.g., `clp model rm z-ai/glm4.7` or `clp model rm 1`)
 
 **Notes:**
 - When adding, if model exists, shows "Model already exists"
@@ -306,7 +306,7 @@ Default models:
 ]
 ```
 
-Use `cnp model add` and `cnp model rm` to manage available models.
+Use `clp model add` and `clp model rm` to manage available models.
 
 ## Troubleshooting
 
@@ -314,12 +314,12 @@ Use `cnp model add` and `cnp model rm` to manage available models.
 
 1. Check if config exists:
    ```bash
-   cnp status
+   clp status
    ```
 
 2. If no config, run config command:
    ```bash
-   cnp config
+   clp config
    ```
 
 3. Check if port is in use:
@@ -333,20 +333,20 @@ Use `cnp model add` and `cnp model rm` to manage available models.
 
 4. Check error logs:
    ```bash
-   cnp logs --error
+   clp logs --error
    ```
 
 ### View Logs
 
 ```bash
 # View recent logs
-cnp logs
+clp logs
 
 # Follow logs
-cnp logs --tail
+clp logs --tail
 
 # View error logs
-cnp logs --error
+clp logs --error
 ```
 
 ### Reset Configuration
@@ -360,7 +360,7 @@ If you need to reconfigure:
 
 2. Run config command:
    ```bash
-   cnp config
+   clp config
    ```
 
 ### Reset Claude Code Configuration
@@ -369,13 +369,13 @@ To reset Claude Code config:
 
 1. Stop service (auto-restores original):
    ```bash
-   cnp stop
+   clp stop
    ```
 
 2. Or manually delete backup and re-setup:
    ```bash
    rm ~/.claude/settings.json.claude-nvidia-proxy.bak
-   cnp model setup
+   clp model setup
    ```
 
 ## License

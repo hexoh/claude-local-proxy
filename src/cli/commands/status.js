@@ -51,7 +51,7 @@ export async function statusCommand() {
       console.log(`  TIMEOUT: ${config.TIMEOUT}ms`);
     } else {
       console.log('Configuration Status: Not configured');
-      console.log('Please run: cnp config');
+      console.log('Please run: clp config');
     }
 
     console.log('');

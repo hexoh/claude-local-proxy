@@ -39,7 +39,7 @@ export async function startCommand() {
         console.log('');
         logger.logInfo('Configuration completed successfully');
       } else {
-        logger.logError('Configuration file does not exist. Please run: cnp config');
+        logger.logError('Configuration file does not exist. Please run: clp config');
         process.exit(1);
       }
     }
@@ -86,7 +86,7 @@ export async function startCommand() {
     if (pidFound) {
       console.log('Service started successfully');
     } else {
-      console.log('Service startup timeout, please check logs with: cnp logs');
+      console.log('Service startup timeout, please check logs with: clp logs');
     }
 
     process.exit(0);
