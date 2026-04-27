@@ -1,6 +1,6 @@
 {
   "name": "claude-local-proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A proxy server that converts Anthropic protocol requests into the OpenAI protocol format.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

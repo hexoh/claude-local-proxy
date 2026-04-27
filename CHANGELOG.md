@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/hexoh/claude-local-proxy/compare/v1.0.0...v1.0.1) (2026-04-27)
+
+
+### Bug Fixes
+
+* rename SERVER_API_KEY to SERVER_KEY for consistency across configuration and code ([7189a0d](https://github.com/hexoh/claude-local-proxy/commit/7189a0d043403d6bcd435e8d4dcede4ee4bc3609))
+* update NV_API_KEY references to API_KEY for consistency across configuration and commands ([78a62ae](https://github.com/hexoh/claude-local-proxy/commit/78a62ae174ed63651137f2ae0f9e3a021161dd74))
+
 ## [1.0.0] - 2024-04-23
 
 ### Added
