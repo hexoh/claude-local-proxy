@@ -12,7 +12,7 @@ let config = {
   PROXY_URL: 'localhost:8888',
   API_BASE_URL: 'https://integrate.api.nvidia.com/v1/chat/completions',
   API_KEY: '',
-  SERVER_API_KEY: 'your-secret-key',
+  SERVER_KEY: 'your-secret-key',
   TIMEOUT: 300000,
   LOG_BODY_MAX: 4096,
   LOG_STREAM_PREVIEW_MAX: 256
@@ -96,7 +96,7 @@ function promptForConfig() {
           ...answers,
           PROXY_URL: 'localhost:8888',
           API_BASE_URL: 'https://integrate.api.nvidia.com/v1/chat/completions',
-          SERVER_API_KEY: 'your-secret-key',
+          SERVER_KEY: 'your-secret-key',
           TIMEOUT: 300000,
           LOG_BODY_MAX: 4096,
           LOG_STREAM_PREVIEW_MAX: 256
@@ -147,7 +147,7 @@ function mergeConfig(jsonConfig) {
     if (jsonConfig.PROXY_URL) merged.PROXY_URL = jsonConfig.PROXY_URL;
     if (jsonConfig.API_BASE_URL) merged.API_BASE_URL = jsonConfig.API_BASE_URL;
     if (jsonConfig.API_KEY) merged.API_KEY = jsonConfig.API_KEY;
-    if (jsonConfig.SERVER_API_KEY !== undefined) merged.SERVER_API_KEY = jsonConfig.SERVER_API_KEY;
+    if (jsonConfig.SERVER_KEY !== undefined) merged.SERVER_KEY = jsonConfig.SERVER_KEY;
     if (jsonConfig.TIMEOUT) merged.TIMEOUT = jsonConfig.TIMEOUT;
     if (jsonConfig.LOG_BODY_MAX !== undefined) merged.LOG_BODY_MAX = jsonConfig.LOG_BODY_MAX;
     if (jsonConfig.LOG_STREAM_PREVIEW_MAX !== undefined) merged.LOG_STREAM_PREVIEW_MAX = jsonConfig.LOG_STREAM_PREVIEW_MAX;
@@ -184,8 +184,8 @@ function mergeConfig(jsonConfig) {
   if (process.env.API_KEY) {
     merged.API_KEY = process.env.API_KEY.trim();
   }
-  if (process.env.SERVER_API_KEY) {
-    merged.SERVER_API_KEY = process.env.SERVER_API_KEY.trim();
+  if (process.env.SERVER_KEY) {
+    merged.SERVER_KEY = process.env.SERVER_KEY.trim();
   }
   if (process.env.PROXY_URL) {
     merged.PROXY_URL = process.env.PROXY_URL.trim();

@@ -160,7 +160,7 @@ Format:
   "PROXY_URL": "localhost:8888",
   "API_BASE_URL": "https://integrate.api.nvidia.com/v1/chat/completions",
   "API_KEY": "your-nvidia-api-key",
-  "SERVER_API_KEY": "your-secret-key",
+  "SERVER_KEY": "your-secret-key",
   "TIMEOUT": 300000,
   "LOG_BODY_MAX": 4096,
   "LOG_STREAM_PREVIEW_MAX": 256
@@ -174,7 +174,7 @@ Format:
 | `PROXY_URL` | Server listen address | `localhost:8888` |
 | `API_BASE_URL` | NVIDIA API address | Required |
 | `API_KEY` | NVIDIA API key | Required |
-| `SERVER_API_KEY` | Server auth key | Optional |
+| `SERVER_KEY` | Server auth key | Optional |
 | `TIMEOUT` | Upstream request timeout (ms) | `300000` |
 | `LOG_BODY_MAX` | Max log characters | `4096` |
 | `LOG_STREAM_PREVIEW_MAX` | Stream preview characters | `256` |
@@ -188,7 +188,7 @@ Environment variables can override config file settings (higher priority):
 | `PROXY_URL` | Server listen address | Config value |
 | `API_BASE_URL` | NVIDIA API address | Config value |
 | `API_KEY` | NVIDIA API key | Config value |
-| `SERVER_API_KEY` | Server auth key | Config value |
+| `SERVER_KEY` | Server auth key | Config value |
 | `TIMEOUT` | Upstream timeout (ms) | Config value |
 | `LOG_BODY_MAX` | Max log characters | Config value |
 | `LOG_STREAM_PREVIEW_MAX` | Stream preview chars | Config value |
@@ -287,7 +287,7 @@ To manually configure, create `~/.claude/settings.json`:
 ```
 
 Configuration notes:
-- `ANTHROPIC_AUTH_TOKEN`: Use `SERVER_API_KEY` from your config
+- `ANTHROPIC_AUTH_TOKEN`: Use `SERVER_KEY` from your config
 - `ANTHROPIC_BASE_URL`: Use `PROXY_URL` from your config (include `http://` or `https://`)
 - `API_TIMEOUT_MS`: Use `TIMEOUT` from your config (in milliseconds)
 - `ANTHROPIC_DEFAULT_HAIKU_MODEL`: Model selected from `models.json`

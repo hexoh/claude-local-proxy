@@ -188,7 +188,7 @@ export async function modelSetupCommand() {
 
     const claudeSettings = {
       env: {
-        ANTHROPIC_AUTH_TOKEN: config.SERVER_API_KEY || '',
+        ANTHROPIC_AUTH_TOKEN: config.SERVER_KEY || '',
         ANTHROPIC_BASE_URL: proxyUrl,
         API_TIMEOUT_MS: timeout.toString(),
         CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1',

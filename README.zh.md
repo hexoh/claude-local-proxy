@@ -156,7 +156,7 @@ listening on localhost:8888
   "PROXY_URL": "localhost:8888",
   "API_BASE_URL": "https://integrate.api.nvidia.com/v1/chat/completions",
   "API_KEY": "your-nvidia-api-key",
-  "SERVER_API_KEY": "your-secret-key",
+  "SERVER_KEY": "your-secret-key",
   "TIMEOUT": 300000,
   "LOG_BODY_MAX": 4096,
   "LOG_STREAM_PREVIEW_MAX": 256
@@ -170,7 +170,7 @@ listening on localhost:8888
 | `PROXY_URL` | 服务器监听地址 | `localhost:8888` |
 | `API_BASE_URL` | NVIDIA API 地址 | 必填 |
 | `API_KEY` | NVIDIA API 密钥 | 必填 |
-| `SERVER_API_KEY` | 服务器认证密钥 | 可选 |
+| `SERVER_KEY` | 服务器认证密钥 | 可选 |
 | `TIMEOUT` | 上游请求超时（毫秒） | `300000` |
 | `LOG_BODY_MAX` | 日志最大字符数 | `4096` |
 | `LOG_STREAM_PREVIEW_MAX` | 流预览字符数 | `256` |
@@ -184,7 +184,7 @@ listening on localhost:8888
 | `PROXY_URL` | 服务器监听地址 | 配置值 |
 | `API_BASE_URL` | NVIDIA API 地址 | 配置值 |
 | `API_KEY` | NVIDIA API 密钥 | 配置值 |
-| `SERVER_API_KEY` | 服务器认证密钥 | 配置值 |
+| `SERVER_KEY` | 服务器认证密钥 | 配置值 |
 | `TIMEOUT` | 上游超时（毫秒） | 配置值 |
 | `LOG_BODY_MAX` | 日志最大字符数 | 配置值 |
 | `LOG_STREAM_PREVIEW_MAX` | 流预览字符数 | 配置值 |

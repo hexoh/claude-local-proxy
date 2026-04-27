@@ -8,7 +8,7 @@ async function handleMessages(req, res, cfg) {
   const reqID = `req_${Date.now()}`;
   const logger = getLogger();
 
-  if (cfg.SERVER_API_KEY && !checkInboundAuth(req, cfg.SERVER_API_KEY)) {
+  if (cfg.SERVER_KEY && !checkInboundAuth(req, cfg.SERVER_KEY)) {
     logger.logAccess(`[${reqID}] inbound unauthorized`);
     writeJSONError(res, 401, 'unauthorized');
     return;

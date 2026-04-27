@@ -8,7 +8,7 @@ let config = {
   addr: process.env.ADDR || ':3001',
   upstreamURL: '',
   providerAPIKey: '',
-  serverAPIKey: process.env.SERVER_API_KEY || '',
+  serverAPIKey: process.env.SERVER_KEY || '',
   timeout: 5 * 60 * 1000, // 5 minutes in milliseconds
   logBodyMax: 4096,
   logStreamPreviewMax: 256
@@ -43,7 +43,7 @@ function loadConfig() {
   // Set required values from environment
   config.upstreamURL = (process.env.UPSTREAM_URL || '').trim();
   config.providerAPIKey = (process.env.PROVIDER_API_KEY || '').trim();
-  config.serverAPIKey = (process.env.SERVER_API_KEY || '').trim();
+  config.serverAPIKey = (process.env.SERVER_KEY || '').trim();
   config.addr = (process.env.ADDR || ':8888').trim();
 
   // Validate required configuration
