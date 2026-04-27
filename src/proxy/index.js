@@ -17,7 +17,7 @@ function doUpstreamJSON(ctx, cfg, openaiReq) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${cfg.NV_API_KEY}`,
+        'Authorization': `Bearer ${cfg.API_KEY}`,
         'Content-Length': Buffer.byteLength(bodyBytes)
       },
       timeout: cfg.TIMEOUT
@@ -59,7 +59,7 @@ async function proxyStream(res, req, cfg, reqID, openaiReq) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${cfg.NV_API_KEY}`,
+      'Authorization': `Bearer ${cfg.API_KEY}`,
       'Content-Length': Buffer.byteLength(bodyBytes)
     }
   };

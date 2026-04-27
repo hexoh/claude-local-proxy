@@ -159,7 +159,7 @@ Format:
 {
   "PROXY_URL": "localhost:8888",
   "API_BASE_URL": "https://integrate.api.nvidia.com/v1/chat/completions",
-  "NV_API_KEY": "your-nvidia-api-key",
+  "API_KEY": "your-nvidia-api-key",
   "SERVER_API_KEY": "your-secret-key",
   "TIMEOUT": 300000,
   "LOG_BODY_MAX": 4096,
@@ -173,7 +173,7 @@ Format:
 |--------|-------------|---------|
 | `PROXY_URL` | Server listen address | `localhost:8888` |
 | `API_BASE_URL` | NVIDIA API address | Required |
-| `NV_API_KEY` | NVIDIA API key | Required |
+| `API_KEY` | NVIDIA API key | Required |
 | `SERVER_API_KEY` | Server auth key | Optional |
 | `TIMEOUT` | Upstream request timeout (ms) | `300000` |
 | `LOG_BODY_MAX` | Max log characters | `4096` |
@@ -187,7 +187,7 @@ Environment variables can override config file settings (higher priority):
 |----------|-------------|---------|
 | `PROXY_URL` | Server listen address | Config value |
 | `API_BASE_URL` | NVIDIA API address | Config value |
-| `NV_API_KEY` | NVIDIA API key | Config value |
+| `API_KEY` | NVIDIA API key | Config value |
 | `SERVER_API_KEY` | Server auth key | Config value |
 | `TIMEOUT` | Upstream timeout (ms) | Config value |
 | `LOG_BODY_MAX` | Max log characters | Config value |

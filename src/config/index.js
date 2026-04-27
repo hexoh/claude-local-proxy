@@ -11,7 +11,7 @@ const DEFAULT_MODELS_FILE = path.join(process.cwd(), 'config', 'models.json');
 let config = {
   PROXY_URL: 'localhost:8888',
   API_BASE_URL: 'https://integrate.api.nvidia.com/v1/chat/completions',
-  NV_API_KEY: '',
+  API_KEY: '',
   SERVER_API_KEY: 'your-secret-key',
   TIMEOUT: 300000,
   LOG_BODY_MAX: 4096,
@@ -73,10 +73,10 @@ function promptForConfig() {
       output: process.stdout
     });
 
-    // Only ask for NV_API_KEY, other parameters use default values
+    // Only ask for API_KEY, other parameters use default values
     const questions = [
       {
-        key: 'NV_API_KEY',
+        key: 'API_KEY',
         prompt: 'Enter NVIDIA API Key',
         default: '',
         required: true,
@@ -146,7 +146,7 @@ function mergeConfig(jsonConfig) {
   if (jsonConfig) {
     if (jsonConfig.PROXY_URL) merged.PROXY_URL = jsonConfig.PROXY_URL;
     if (jsonConfig.API_BASE_URL) merged.API_BASE_URL = jsonConfig.API_BASE_URL;
-    if (jsonConfig.NV_API_KEY) merged.NV_API_KEY = jsonConfig.NV_API_KEY;
+    if (jsonConfig.API_KEY) merged.API_KEY = jsonConfig.API_KEY;
     if (jsonConfig.SERVER_API_KEY !== undefined) merged.SERVER_API_KEY = jsonConfig.SERVER_API_KEY;
     if (jsonConfig.TIMEOUT) merged.TIMEOUT = jsonConfig.TIMEOUT;
     if (jsonConfig.LOG_BODY_MAX !== undefined) merged.LOG_BODY_MAX = jsonConfig.LOG_BODY_MAX;
@@ -181,8 +181,8 @@ function mergeConfig(jsonConfig) {
   if (process.env.API_BASE_URL) {
     merged.API_BASE_URL = process.env.API_BASE_URL.trim();
   }
-  if (process.env.NV_API_KEY) {
-    merged.NV_API_KEY = process.env.NV_API_KEY.trim();
+  if (process.env.API_KEY) {
+    merged.API_KEY = process.env.API_KEY.trim();
   }
   if (process.env.SERVER_API_KEY) {
     merged.SERVER_API_KEY = process.env.SERVER_API_KEY.trim();
@@ -218,8 +218,8 @@ function loadConfig() {
   if (!config.API_BASE_URL) {
     throw new Error('missing API_BASE_URL in config or environment');
   }
-  if (!config.NV_API_KEY) {
-    throw new Error('missing NV_API_KEY in config or environment');
+  if (!config.API_KEY) {
+    throw new Error('missing API_KEY in config or environment');
   }
 
   return config;

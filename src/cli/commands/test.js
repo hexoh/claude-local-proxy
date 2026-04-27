@@ -8,8 +8,8 @@ const DEFAULT_PROMPT = 'Hello, please tell me a little about yourself.';
 export async function testCommand(modelName) {
   const config = readConfigFile();
   
-  if (!config?.NV_API_KEY) {
-    console.error('Error: NV_API_KEY not configured. Run: clp config');
+  if (!config?.API_KEY) {
+    console.error('Error: API_KEY not configured. Run: clp config');
     process.exit(1);
   }
 
@@ -37,7 +37,7 @@ export async function testCommand(modelName) {
   console.log('');
 
   const openai = new OpenAI({
-    apiKey: config.NV_API_KEY,
+    apiKey: config.API_KEY,
     baseURL: BASE_URL
   });
 

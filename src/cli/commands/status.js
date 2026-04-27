@@ -47,7 +47,7 @@ export async function statusCommand() {
       console.log(`  Config File: ${getConfigPath()}`);
       console.log(`  PROXY_URL: ${config.PROXY_URL}`);
       console.log(`  API_BASE_URL: ${config.API_BASE_URL}`);
-      console.log(`  Auth Status: ${config.NV_API_KEY ? 'Enabled' : 'Disabled'}`);
+      console.log(`  Auth Status: ${config.API_KEY ? 'Enabled' : 'Disabled'}`);
       console.log(`  TIMEOUT: ${config.TIMEOUT}ms`);
     } else {
       console.log('Configuration Status: Not configured');
