@@ -110,7 +110,7 @@ function createServer(cfg) {
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(200);
       res.end(JSON.stringify({
-        message: 'claude-nvidia-proxy',
+        message: 'claude-local-proxy',
         health: 'ok'
       }));
     } else {

@@ -3,11 +3,11 @@ import path from 'path';
 import os from 'os';
 import { getLogger } from '../../logger/index.js';
 
-const PID_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 const CLAUDE_DIR = path.join(os.homedir(), '.claude');
 const CLAUDE_SETTINGS_FILE = path.join(CLAUDE_DIR, 'settings.json');
-const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-nvidia-proxy.bak');
+const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-local-proxy.bak');
 
 export async function stopCommand() {
   const logger = getLogger();

@@ -19,7 +19,7 @@
   },
   "keywords": [
     "anthropic",
-    "nvidia",
+    "openai",
     "proxy",
     "api",
     "claude",
@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hexoh/claude-nvidia-proxy.git"
+    "url": "https://github.com/hexoh/claude-local-proxy.git"
   },
   "bugs": {
-    "url": "https://github.com/hexoh/claude-nvidia-proxy/issues"
+    "url": "https://github.com/hexoh/claude-local-proxy/issues"
   },
-  "homepage": "https://github.com/hexoh/claude-nvidia-proxy#readme",
+  "homepage": "https://github.com/hexoh/claude-local-proxy#readme",
   "engines": {
     "node": ">=18.0.0"
   },

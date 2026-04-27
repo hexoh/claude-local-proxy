@@ -10,7 +10,7 @@ import { getLogger } from '../../logger/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PID_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 
 export async function startCommand() {

@@ -1,12 +1,12 @@
 # Contributing Guide
 
-Thank you for your interest in the claude-nvidia-proxy project! We welcome contributions in all forms.
+Thank you for your interest in the claude-local-proxy project! We welcome contributions in all forms.
 
 ## How to Contribute
 
 ### Reporting Bugs
 
-1. Search existing issues on [GitHub Issues](https://github.com/hexoh/claude-nvidia-proxy/issues)
+1. Search existing issues on [GitHub Issues](https://github.com/hexoh/claude-local-proxy/issues)
 2. If no relevant issue exists, create a new one
 3. Provide detailed information:
    - Issue description
@@ -18,7 +18,7 @@ Thank you for your interest in the claude-nvidia-proxy project! We welcome contr
 
 ### Proposing New Features
 
-1. Discuss your idea on [GitHub Discussions](https://github.com/hexoh/claude-nvidia-proxy/discussions)
+1. Discuss your idea on [GitHub Discussions](https://github.com/hexoh/claude-local-proxy/discussions)
 2. After receiving feedback, create a Feature Request Issue
 3. Describe the use case and expected behavior
 
@@ -31,8 +31,8 @@ Click the "Fork" button on the GitHub page.
 #### 2. Clone Your Fork
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-nvidia-proxy.git
-cd claude-nvidia-proxy
+git clone https://github.com/YOUR_USERNAME/claude-local-proxy.git
+cd claude-local-proxy
 ```
 
 #### 3. Create a Branch
@@ -175,7 +175,7 @@ npm test
 ## Project Structure
 
 ```
-claude-nvidia-proxy/
+claude-local-proxy/
 ├── src/
 │   ├── cli/
 │   │   ├── index.js              # CLI entry
@@ -262,7 +262,7 @@ Add new usage examples in the `examples/` directory:
 
 ```javascript
 // examples/new-feature.js
-import { createProxy } from 'claude-nvidia-proxy';
+import { createProxy } from 'claude-local-proxy';
 
 async function example() {
   // Your example code
@@ -292,8 +292,8 @@ export { example };
 If you have any questions:
 
 1. Check the [documentation](README.md)
-2. Search [Issues](https://github.com/hexoh/claude-nvidia-proxy/issues)
-3. Ask in [Discussions](https://github.com/hexoh/claude-nvidia-proxy/discussions)
+2. Search [Issues](https://github.com/hexoh/claude-local-proxy/issues)
+3. Ask in [Discussions](https://github.com/hexoh/claude-local-proxy/discussions)
 4. Contact the maintainers
 
 ## License

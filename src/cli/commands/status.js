@@ -4,14 +4,14 @@ import os from 'os';
 import { getLogger } from '../../logger/index.js';
 import { readConfigFile, getConfigPath } from '../../config/index.js';
 
-const PID_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 
 export async function statusCommand() {
   const logger = getLogger();
 
   try {
-    console.log('=== Claude NVIDIA Proxy Status ===');
+    console.log('=== Claude Local Proxy Status ===');
     console.log('');
 
     if (fs.existsSync(PID_FILE)) {
@@ -55,7 +55,7 @@ export async function statusCommand() {
     }
 
     console.log('');
-    console.log('Log Directory: ~/.claude-nvidia-proxy/logs');
+    console.log('Log Directory: ~/.claude-local-proxy/logs');
 
   } catch (err) {
     logger.logError(`Failed to get status: ${err.message}`);

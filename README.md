@@ -1,21 +1,21 @@
 <div align="center">
 
-# Claude-NVIDIA-Proxy
+# Claude-Local-Proxy
 
-<a href="https://www.npmjs.com/package/claude-nvidia-proxy">
-   <img src="https://img.shields.io/npm/v/claude-nvidia-proxy.svg" alt="npm version">
+<a href="https://www.npmjs.com/package/claude-local-proxy">
+   <img src="https://img.shields.io/npm/v/claude-local-proxy.svg" alt="npm version">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/releases">
-   <img src="https://img.shields.io/github/v/release/hexoh/claude-nvidia-proxy.svg" alt="GitHub version">
+<a href="https://github.com/hexoh/claude-local-proxy/releases">
+   <img src="https://img.shields.io/github/v/release/hexoh/claude-local-proxy.svg" alt="GitHub version">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/releases">
+<a href="https://github.com/hexoh/claude-local-proxy/releases">
    <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/blob/main/LICENSE">
-   <img src="https://img.shields.io/github/license/hexoh/claude-nvidia-proxy.svg" alt="license">
+<a href="https://github.com/hexoh/claude-local-proxy/blob/main/LICENSE">
+   <img src="https://img.shields.io/github/license/hexoh/claude-local-proxy.svg" alt="license">
 </a>
 
-A proxy server that converts Anthropic API requests to NVIDIA API requests.
+A proxy server that converts Anthropic protocol requests into the OpenAI protocol format.
 
 English | [中文](README.zh.md) | [Changelog](CHANGELOG.md)
 
@@ -23,7 +23,7 @@ English | [中文](README.zh.md) | [Changelog](CHANGELOG.md)
 
 ## Features
 
-- Convert Anthropic API format to OpenAI/NVIDIA API format
+- Convert Anthropic API format to OpenAI API format
 - Support streaming and non-streaming responses
 - Support tool calls
 - Support image input
@@ -35,12 +35,12 @@ English | [中文](README.zh.md) | [Changelog](CHANGELOG.md)
 ### As npm package (recommended)
 
 ```bash
-npm install -g claude-nvidia-proxy
+npm install -g claude-local-proxy
 ```
 
 ### From GitHub Release
 
-* Download the release from [GitHub Releases](https://github.com/hexoh/claude-nvidia-proxy/releases)
+* Download the release from [GitHub Releases](https://github.com/hexoh/claude-local-proxy/releases)
 * Extract the file
 * Run:
 
@@ -66,7 +66,7 @@ If no configuration exists, the service will automatically prompt you to configu
 
 ```
 ? Configuration file does not exist. Do you want to configure now? (y/N): y
-? Enter NVIDIA API Key: nvapi-xxxxxxxxxxxxxxxx
+? Enter API Key: nvapi-xxxxxxxxxxxxxxxx
 listening on localhost:8888
 ```
 
@@ -127,7 +127,7 @@ listening on localhost:8888
 
 ### Other Commands
 
-- `clp config` - Configure or reconfigure the proxy (requires NVIDIA API Key)
+- `clp config` - Configure or reconfigure the proxy (requires API Key)
 - `clp start` - Start the proxy service
 - `clp stop` - Stop the proxy service
 - `clp restart` - Restart the proxy service
@@ -150,8 +150,8 @@ listening on localhost:8888
 
 | OS | Location |
 |--------|-------------|
-| Windows | `C:\Users\<username>\.claude-nvidia-proxy\settings.json` |
-| macOS / Linux | `~/.claude-nvidia-proxy/settings.json` |
+| Windows | `C:\Users\<username>\.claude-local-proxy\settings.json` |
+| macOS / Linux | `~/.claude-local-proxy/settings.json` |
 
 Format:
 
@@ -159,7 +159,7 @@ Format:
 {
   "PROXY_URL": "localhost:8888",
   "API_BASE_URL": "https://integrate.api.nvidia.com/v1/chat/completions",
-  "API_KEY": "your-nvidia-api-key",
+  "API_KEY": "your-api-key",
   "SERVER_KEY": "your-secret-key",
   "TIMEOUT": 300000,
   "LOG_BODY_MAX": 4096,
@@ -172,8 +172,8 @@ Format:
 | Option | Description | Default |
 |--------|-------------|---------|
 | `PROXY_URL` | Server listen address | `localhost:8888` |
-| `API_BASE_URL` | NVIDIA API address | Required |
-| `API_KEY` | NVIDIA API key | Required |
+| `API_BASE_URL` | API address | Required |
+| `API_KEY` | API key | Required |
 | `SERVER_KEY` | Server auth key | Optional |
 | `TIMEOUT` | Upstream request timeout (ms) | `300000` |
 | `LOG_BODY_MAX` | Max log characters | `4096` |
@@ -186,8 +186,8 @@ Environment variables can override config file settings (higher priority):
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `PROXY_URL` | Server listen address | Config value |
-| `API_BASE_URL` | NVIDIA API address | Config value |
-| `API_KEY` | NVIDIA API key | Config value |
+| `API_BASE_URL` | API address | Config value |
+| `API_KEY` | API key | Config value |
 | `SERVER_KEY` | Server auth key | Config value |
 | `TIMEOUT` | Upstream timeout (ms) | Config value |
 | `LOG_BODY_MAX` | Max log characters | Config value |
@@ -197,8 +197,8 @@ Environment variables can override config file settings (higher priority):
 
 | OS | Log Location |
 |--------|-------------|
-| Windows | `C:\Users\<username>\.claude-nvidia-proxy\logs\` |
-| macOS / Linux | `~/.claude-nvidia-proxy/logs/` |
+| Windows | `C:\Users\<username>\.claude-local-proxy\logs\` |
+| macOS / Linux | `~/.claude-local-proxy/logs/` |
 
 Log types:
 - `proxy-YYYY-MM-DD.log` - Main log
@@ -245,7 +245,7 @@ clp model setup
 ```
 
 This command will:
-1. Read available models (from `~/.claude-nvidia-proxy/models.json`)
+1. Read available models (from `~/.claude-local-proxy/models.json`)
 2. Guide you to select three models (HAIKU, SONNET, OPUS)
 3. Auto-generate Claude Code config file
 4. Backup original Claude Code config (if exists)
@@ -296,7 +296,7 @@ Configuration notes:
 
 ### Model Configuration
 
-Available models are stored in `~/.claude-nvidia-proxy/models.json`
+Available models are stored in `~/.claude-local-proxy/models.json`
 
 Default models:
 ```json
@@ -355,7 +355,7 @@ If you need to reconfigure:
 
 1. Delete config:
    ```bash
-   rm ~/.claude-nvidia-proxy/settings.json
+   rm ~/.claude-local-proxy/settings.json
    ```
 
 2. Run config command:
@@ -374,7 +374,7 @@ To reset Claude Code config:
 
 2. Or manually delete backup and re-setup:
    ```bash
-   rm ~/.claude/settings.json.claude-nvidia-proxy.bak
+   rm ~/.claude/settings.json.claude-local-proxy.bak
    clp model setup
    ```
 

@@ -8,13 +8,13 @@ import { startCommand } from './start.js';
 import { restartCommand } from './restart.js';
 import { keySelect } from '../utils.js';
 
-const CONFIG_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const CONFIG_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const CLAUDE_DIR = path.join(os.homedir(), '.claude');
 const CLAUDE_SETTINGS_FILE = path.join(CLAUDE_DIR, 'settings.json');
-const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-nvidia-proxy.bak');
+const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-local-proxy.bak');
 const CLAUDE_PROXY_SETTINGS_FILE = path.join(CONFIG_DIR, 'claude.settings.json');
 
-const PID_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 
 function isServiceRunning() {
@@ -68,7 +68,7 @@ export async function modelAddCommand(modelName) {
       });
 
       modelName = await new Promise(resolve => {
-        rl.question('Enter NVIDIA model name (e.g., z-ai/glm4.7): ', resolve);
+        rl.question('Enter model name (e.g., z-ai/glm4.7): ', resolve);
       });
       rl.close();
 
@@ -246,7 +246,7 @@ export async function modelSetupCommand() {
 }
 
 export async function modelHelpCommand() {
-  console.log('Claude NVIDIA Proxy - Model Management');
+  console.log('Claude Local Proxy - Model Management');
   console.log('');
   console.log('Usage: clp model <command> [options]');
   console.log('');
@@ -263,5 +263,5 @@ export async function modelHelpCommand() {
   console.log('  clp model rm 1');
   console.log('  clp model setup');
   console.log('');
-  console.log('For more information, visit: https://github.com/hexoh/claude-nvidia-proxy');
+  console.log('For more information, visit: https://github.com/hexoh/claude-local-proxy');
 }

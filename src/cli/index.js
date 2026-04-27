@@ -36,7 +36,7 @@ async function main() {
   }
 
   if (command === '--help' || command === '-h') {
-    console.log('Claude NVIDIA Proxy - CLI Tool');
+    console.log('Claude Local Proxy - CLI Tool');
     console.log('');
     console.log('Usage: clp <command> [options]');
     console.log('');
@@ -141,7 +141,7 @@ async function main() {
       await testCommand(args[0]);
       break;
     default:
-      console.log('Claude NVIDIA Proxy - CLI Tool');
+      console.log('Claude Local Proxy - CLI Tool');
       console.log('');
       console.log('Usage: clp <command> [options]');
       console.log('');

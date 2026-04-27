@@ -1,21 +1,21 @@
 <div align="center">
 
-# Claude-NVIDIA-Proxy
+# Claude-Local-Proxy
 
-<a href="https://www.npmjs.com/package/claude-nvidia-proxy">
-   <img src="https://img.shields.io/npm/v/claude-nvidia-proxy.svg" alt="npm version">
+<a href="https://www.npmjs.com/package/claude-local-proxy">
+   <img src="https://img.shields.io/npm/v/claude-local-proxy.svg" alt="npm version">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/releases">
-   <img src="https://img.shields.io/github/v/release/hexoh/claude-nvidia-proxy.svg" alt="GitHub version">
+<a href="https://github.com/hexoh/claude-local-proxy/releases">
+   <img src="https://img.shields.io/github/v/release/hexoh/claude-local-proxy.svg" alt="GitHub version">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/releases">
+<a href="https://github.com/hexoh/claude-local-proxy/releases">
    <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform">
 </a>
-<a href="https://github.com/hexoh/claude-nvidia-proxy/blob/main/LICENSE">
-   <img src="https://img.shields.io/github/license/hexoh/claude-nvidia-proxy.svg" alt="license">
+<a href="https://github.com/hexoh/claude-local-proxy/blob/main/LICENSE">
+   <img src="https://img.shields.io/github/license/hexoh/claude-local-proxy.svg" alt="license">
 </a>
 
-一个将 Anthropic API 请求转换为 NVIDIA API 请求的代理服务器。
+一个将 Anthropic 协议请求转换为 OpenAI 协议请求的代理服务器。
 
 [English](README.md) | 中文 | [Changelog](CHANGELOG.md)
 
@@ -23,7 +23,7 @@
 
 ## 功能特性
 
-- 将 Anthropic API 格式转换为 OpenAI/NVIDIA API 格式
+- 将 Anthropic API 格式转换为 OpenAI API 格式
 - 支持流式和非流式响应
 - 支持工具调用
 - 支持图片输入
@@ -35,12 +35,12 @@
 ### 作为 npm 包（推荐）
 
 ```bash
-npm install -g claude-nvidia-proxy
+npm install -g claude-local-proxy
 ```
 
 ### 从 GitHub Release 下载
 
-* 从 [GitHub Releases](https://github.com/hexoh/claude-nvidia-proxy/releases) 下载
+* 从 [GitHub Releases](https://github.com/hexoh/claude-local-proxy/releases) 下载
 * 解压文件
 * 运行：
 
@@ -64,7 +64,7 @@ clp start
 
 ```
 ? Configuration file does not exist. Do you want to configure now? (y/N): y
-? Enter NVIDIA API Key: nvapi-xxxxxxxxxxxxxxxx
+? Enter API Key: nvapi-xxxxxxxxxxxxxxxx
 listening on localhost:8888
 ```
 
@@ -123,7 +123,7 @@ listening on localhost:8888
 
 ### 其他命令
 
-- `clp config` - 配置或重新配置代理（需要 NVIDIA API Key）
+- `clp config` - 配置或重新配置代理（需要 API Key）
 - `clp start` - 启动代理服务
 - `clp stop` - 停止代理服务
 - `clp restart` - 重启代理服务
@@ -146,8 +146,8 @@ listening on localhost:8888
 
 | 操作系统 | 位置 |
 |---------|------|
-| Windows | `C:\Users\<username>\.claude-nvidia-proxy\settings.json` |
-| macOS / Linux | `~/.claude-nvidia-proxy/settings.json` |
+| Windows | `C:\Users\<username>\.claude-local-proxy\settings.json` |
+| macOS / Linux | `~/.claude-local-proxy/settings.json` |
 
 格式：
 
@@ -155,7 +155,7 @@ listening on localhost:8888
 {
   "PROXY_URL": "localhost:8888",
   "API_BASE_URL": "https://integrate.api.nvidia.com/v1/chat/completions",
-  "API_KEY": "your-nvidia-api-key",
+  "API_KEY": "your-api-key",
   "SERVER_KEY": "your-secret-key",
   "TIMEOUT": 300000,
   "LOG_BODY_MAX": 4096,
@@ -168,8 +168,8 @@ listening on localhost:8888
 | 配置项 | 说明 | 默认值 |
 |--------|-------------|---------|
 | `PROXY_URL` | 服务器监听地址 | `localhost:8888` |
-| `API_BASE_URL` | NVIDIA API 地址 | 必填 |
-| `API_KEY` | NVIDIA API 密钥 | 必填 |
+| `API_BASE_URL` | API 地址 | 必填 |
+| `API_KEY` | API 密钥 | 必填 |
 | `SERVER_KEY` | 服务器认证密钥 | 可选 |
 | `TIMEOUT` | 上游请求超时（毫秒） | `300000` |
 | `LOG_BODY_MAX` | 日志最大字符数 | `4096` |
@@ -182,8 +182,8 @@ listening on localhost:8888
 | 变量 | 说明 | 默认值 |
 |----------|-------------|---------|
 | `PROXY_URL` | 服务器监听地址 | 配置值 |
-| `API_BASE_URL` | NVIDIA API 地址 | 配置值 |
-| `API_KEY` | NVIDIA API 密钥 | 配置值 |
+| `API_BASE_URL` | API 地址 | 配置值 |
+| `API_KEY` | API 密钥 | 配置值 |
 | `SERVER_KEY` | 服务器认证密钥 | 配置值 |
 | `TIMEOUT` | 上游超时（毫秒） | 配置值 |
 | `LOG_BODY_MAX` | 日志最大字符数 | 配置值 |
@@ -193,8 +193,8 @@ listening on localhost:8888
 
 | 操作系统 | 日志位置 |
 |---------|-------------|
-| Windows | `C:\Users\<username>\.claude-nvidia-proxy\logs\` |
-| macOS / Linux | `~/.claude-nvidia-proxy/logs/` |
+| Windows | `C:\Users\<username>\.claude-local-proxy\logs\` |
+| macOS / Linux | `~/.claude-local-proxy/logs/` |
 
 日志类型：
 - `proxy-YYYY-MM-DD.log` - 主日志
@@ -241,7 +241,7 @@ clp model setup
 ```
 
 此命令会：
-1. 读取可用模型列表（从 `~/.claude-nvidia-proxy/models.json`）
+1. 读取可用模型列表（从 `~/.claude-local-proxy/models.json`）
 2. 引导选择三个模型（HAIKU、SONNET、OPUS）
 3. 自动生成 Claude Code 配置文件
 4. 备份原有配置（如存在）
@@ -283,7 +283,7 @@ clp model setup
 
 ### 模型配置
 
-可用模型存储在 `~/.claude-nvidia-proxy/models.json`
+可用模型存储在 `~/.claude-local-proxy/models.json`
 
 默认模型：
 ```json
@@ -320,7 +320,7 @@ clp model setup
 ### 重置配置
 
 ```bash
-rm ~/.claude-nvidia-proxy/settings.json
+rm ~/.claude-local-proxy/settings.json
 clp config
 ```
 
@@ -329,7 +329,7 @@ clp config
 ```bash
 clp stop
 # 或手动删除备份后重新配置
-rm ~/.claude/settings.json.claude-nvidia-proxy.bak
+rm ~/.claude/settings.json.claude-local-proxy.bak
 clp model setup
 ```
 

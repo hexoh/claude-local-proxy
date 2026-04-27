@@ -28,12 +28,12 @@ jobs:
 
       - name: Archive Release
         run: |
-          zip -r claude-nvidia-proxy.zip dist/ config/ README.md LICENSE
+          zip -r claude-local-proxy.zip dist/ config/ README.md LICENSE
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: claude-nvidia-proxy.zip
+          files: claude-local-proxy.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

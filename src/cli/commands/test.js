@@ -74,12 +74,12 @@ export async function testCommand(modelName) {
 }
 
 export async function testHelpCommand() {
-  console.log('Claude NVIDIA Proxy - Test Command');
+  console.log('Claude Local Proxy - Test Command');
   console.log('');
   console.log('Usage: clp test [model]');
   console.log('');
   console.log('Description:');
-  console.log('  Test an NVIDIA model with a prompt and measure response time.');
+  console.log('  Test an Local model with a prompt and measure response time.');
   console.log('');
   console.log('Options:');
   console.log('  model     Optional model name (e.g., z-ai/glm4.7)');

@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import readline from 'readline';
 
-const CONFIG_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const CONFIG_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'settings.json');
 const MODELS_FILE = path.join(CONFIG_DIR, 'models.json');
 const DEFAULT_MODELS_FILE = path.join(process.cwd(), 'config', 'models.json');
@@ -77,7 +77,7 @@ function promptForConfig() {
     const questions = [
       {
         key: 'API_KEY',
-        prompt: 'Enter NVIDIA API Key',
+        prompt: 'Enter API Key',
         default: '',
         required: true,
         password: true

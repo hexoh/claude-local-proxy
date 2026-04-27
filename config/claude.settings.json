@@ -1,0 +1,12 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "your-secret-key",
+    "ANTHROPIC_BASE_URL": "http://localhost:8888",
+    "API_TIMEOUT_MS": "300000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "z-ai/glm4.7",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm4.7",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "z-ai/glm4.7"
+  },
+  "includeCoAuthoredBy": false
+}

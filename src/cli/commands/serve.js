@@ -5,7 +5,7 @@ import { loadConfig, getConfigPath } from '../../config/index.js';
 import { createServer } from '../../server/index.js';
 import { getLogger, checkPortAvailable } from '../../logger/index.js';
 
-const PID_DIR = path.join(os.homedir(), '.claude-nvidia-proxy');
+const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
 const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 
 export async function serveCommand() {

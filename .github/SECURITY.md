@@ -84,4 +84,4 @@ Thank you to all security researchers who report issues!
 ## Contact
 
 - Security email: allenxiaohu@gmail.com
-- GitHub: https://github.com/hexoh/claude-nvidia-proxy/security/advisories
+- GitHub: https://github.com/hexoh/claude-local-proxy/security/advisories

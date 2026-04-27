@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import net from 'net';
 
-const LOG_DIR = path.join(os.homedir(), '.claude-nvidia-proxy', 'logs');
+const LOG_DIR = path.join(os.homedir(), '.claude-local-proxy', 'logs');
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const LOG_RETENTION_DAYS = 7;
 

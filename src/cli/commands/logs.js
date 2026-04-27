@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import { getLogger } from '../../logger/index.js';
 
-const LOG_DIR = path.join(os.homedir(), '.claude-nvidia-proxy', 'logs');
+const LOG_DIR = path.join(os.homedir(), '.claude-local-proxy', 'logs');
 
 export async function logsCommand(args) {
   const logger = getLogger();

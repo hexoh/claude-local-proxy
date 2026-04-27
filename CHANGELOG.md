@@ -8,13 +8,13 @@ All notable changes to this project will be documented in this file. See [standa
 - Initial release
 - Core proxy functionality
 - Anthropic API format conversion
-- NVIDIA API integration
+- OpenAI API integration
 - Configuration via environment variables
 - Docker support
 - npm package support
 
 ### Features
-- Convert Anthropic requests to OpenAI/NVIDIA format
+- Convert Anthropic requests to OpenAI format
 - Support for streaming responses
 - Support for tool calls
 - Support for image inputs
