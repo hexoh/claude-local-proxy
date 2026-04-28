@@ -1,11 +1,7 @@
 import fs from 'fs';
-import path from 'path';
-import os from 'os';
 import { getLogger } from '../../logger/index.js';
 import { readConfigFile, getConfigPath } from '../../config/index.js';
-
-const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const PID_FILE = path.join(PID_DIR, 'proxy.pid');
+import { isServiceRunning, getPid, APP_DIR, PID_FILE } from '../common.js';
 
 export async function statusCommand() {
   const logger = getLogger();
@@ -14,29 +10,25 @@ export async function statusCommand() {
     console.log('=== Claude Local Proxy Status ===');
     console.log('');
 
-    if (fs.existsSync(PID_FILE)) {
-      const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8'));
-      try {
-        process.kill(pid, 0);
-        console.log('Service Status: Running');
-        console.log(`Process ID: ${pid}`);
+    if (isServiceRunning()) {
+      const pid = getPid();
+      console.log('Service Status: Running');
+      console.log(`Process ID: ${pid}`);
 
-        try {
-          const stats = fs.statSync(PID_FILE);
-          const startTime = new Date(stats.mtimeMs);
-          const uptime = Math.floor((Date.now() - stats.mtimeMs) / 1000);
-          const hours = Math.floor(uptime / 3600);
-          const minutes = Math.floor((uptime % 3600) / 60);
-          const seconds = uptime % 60;
-          console.log(`Uptime: ${hours}h ${minutes}m ${seconds}s`);
-        } catch (e) {
-        }
+      try {
+        const stats = fs.statSync(PID_FILE);
+        const uptime = Math.floor((Date.now() - stats.mtimeMs) / 1000);
+        const hours = Math.floor(uptime / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        const seconds = uptime % 60;
+        console.log(`Uptime: ${hours}h ${minutes}m ${seconds}s`);
       } catch (e) {
-        console.log('Service Status: Not running');
-        console.log('Note: PID file exists but process is not running');
       }
     } else {
       console.log('Service Status: Not running');
+      if (fs.existsSync(PID_FILE)) {
+        console.log('Note: PID file exists but process is not running');
+      }
     }
 
     console.log('');
@@ -55,7 +47,7 @@ export async function statusCommand() {
     }
 
     console.log('');
-    console.log('Log Directory: ~/.claude-local-proxy/logs');
+    console.log(`Log Directory: ${APP_DIR}/logs`);
 
   } catch (err) {
     logger.logError(`Failed to get status: ${err.message}`);

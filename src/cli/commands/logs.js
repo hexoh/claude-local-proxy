@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import os from 'os';
 import { getLogger } from '../../logger/index.js';
-
-const LOG_DIR = path.join(os.homedir(), '.claude-local-proxy', 'logs');
+import { LOG_DIR } from '../common.js';
 
 export async function logsCommand(args) {
   const logger = getLogger();
@@ -41,7 +39,8 @@ export async function logsCommand(args) {
       console.log('Press Ctrl+C to exit');
       console.log('');
 
-      const tailProcess = require('child_process').spawn('tail', ['-f', logFile], {
+      const { spawn } = await import('child_process');
+      const tailProcess = spawn('tail', ['-f', logFile], {
         stdio: 'inherit'
       });
 
