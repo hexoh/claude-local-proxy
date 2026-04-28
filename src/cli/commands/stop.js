@@ -1,76 +1,50 @@
 import fs from 'fs';
-import path from 'path';
-import os from 'os';
 import { getLogger } from '../../logger/index.js';
-
-const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const PID_FILE = path.join(PID_DIR, 'proxy.pid');
-const CLAUDE_DIR = path.join(os.homedir(), '.claude');
-const CLAUDE_SETTINGS_FILE = path.join(CLAUDE_DIR, 'settings.json');
-const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-local-proxy.bak');
+import { 
+  isServiceRunning, 
+  deletePidFile, 
+  CLAUDE_SETTINGS_FILE, 
+  CLAUDE_BACKUP_FILE,
+  waitForProcessToStop,
+  getPid
+} from '../common.js';
 
 export async function stopCommand() {
   const logger = getLogger();
 
   try {
-    if (!fs.existsSync(PID_FILE)) {
+    if (!isServiceRunning()) {
       logger.logError('Service is not running');
       process.exit(1);
     }
 
-    const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8'));
-
-    try {
-      process.kill(pid, 0);
-    } catch (e) {
+    const pid = getPid();
+    if (!pid) {
       logger.logError('Service is not running');
-      if (fs.existsSync(PID_FILE)) {
-        fs.unlinkSync(PID_FILE);
-      }
+      deletePidFile();
       process.exit(1);
     }
 
     process.kill(pid, 'SIGTERM');
 
-    let attempts = 0;
-    const maxAttempts = 10;
+    const stopped = await waitForProcessToStop(pid);
 
-    const checkStopped = () => {
-      return new Promise((resolve) => {
-        try {
-          process.kill(pid, 0);
-          resolve(false);
-        } catch (e) {
-          resolve(true);
-        }
-      });
-    };
-
-    while (attempts < maxAttempts) {
-      const stopped = await checkStopped();
-      if (stopped) {
-        if (fs.existsSync(PID_FILE)) {
-          fs.unlinkSync(PID_FILE);
-        }
-        
-        if (fs.existsSync(CLAUDE_BACKUP_FILE)) {
-          fs.copyFileSync(CLAUDE_BACKUP_FILE, CLAUDE_SETTINGS_FILE);
-          fs.unlinkSync(CLAUDE_BACKUP_FILE);
-          logger.logInfo('Original Claude settings restored');
-        }
-        
-        logger.logInfo('Service stopped');
-        process.exit(0);
+    if (stopped) {
+      deletePidFile();
+      
+      if (fs.existsSync(CLAUDE_BACKUP_FILE)) {
+        fs.copyFileSync(CLAUDE_BACKUP_FILE, CLAUDE_SETTINGS_FILE);
+        fs.unlinkSync(CLAUDE_BACKUP_FILE);
+        logger.logInfo('Original Claude settings restored');
       }
-      attempts++;
-      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      logger.logInfo('Service stopped');
+      process.exit(0);
     }
 
     logger.logError('Timeout stopping service, attempting force kill');
     process.kill(pid, 'SIGKILL');
-    if (fs.existsSync(PID_FILE)) {
-      fs.unlinkSync(PID_FILE);
-    }
+    deletePidFile();
     
     if (fs.existsSync(CLAUDE_BACKUP_FILE)) {
       fs.copyFileSync(CLAUDE_BACKUP_FILE, CLAUDE_SETTINGS_FILE);

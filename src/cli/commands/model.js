@@ -1,34 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import os from 'os';
 import readline from 'readline';
 import { getLogger } from '../../logger/index.js';
 import { readConfigFile, readModelsFile, writeModelsFile, modelExists, getConfigPath } from '../../config/index.js';
 import { startCommand } from './start.js';
 import { restartCommand } from './restart.js';
 import { keySelect } from '../utils.js';
+import { 
+  isServiceRunning, 
+  APP_DIR, 
+  CLAUDE_DIR, 
+  CLAUDE_SETTINGS_FILE, 
+  CLAUDE_BACKUP_FILE 
+} from '../common.js';
 
-const CONFIG_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const CLAUDE_DIR = path.join(os.homedir(), '.claude');
-const CLAUDE_SETTINGS_FILE = path.join(CLAUDE_DIR, 'settings.json');
-const CLAUDE_BACKUP_FILE = path.join(CLAUDE_DIR, 'settings.json.claude-local-proxy.bak');
-const CLAUDE_PROXY_SETTINGS_FILE = path.join(CONFIG_DIR, 'claude.settings.json');
-
-const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const PID_FILE = path.join(PID_DIR, 'proxy.pid');
-
-function isServiceRunning() {
-  if (!fs.existsSync(PID_FILE)) {
-    return false;
-  }
-  try {
-    const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8'));
-    process.kill(pid, 0);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+const CLAUDE_PROXY_SETTINGS_FILE = path.join(APP_DIR, 'claude.settings.json');
 
 export async function modelListCommand() {
   const logger = getLogger();
@@ -199,8 +185,8 @@ export async function modelSetupCommand() {
       includeCoAuthoredBy: false
     };
 
-    if (!fs.existsSync(CONFIG_DIR)) {
-      fs.mkdirSync(CONFIG_DIR, { recursive: true });
+    if (!fs.existsSync(APP_DIR)) {
+      fs.mkdirSync(APP_DIR, { recursive: true });
     }
 
     fs.writeFileSync(CLAUDE_PROXY_SETTINGS_FILE, JSON.stringify(claudeSettings, null, 2), 'utf-8');
@@ -217,16 +203,6 @@ export async function modelSetupCommand() {
 
     fs.copyFileSync(CLAUDE_PROXY_SETTINGS_FILE, CLAUDE_SETTINGS_FILE);
     logger.logInfo(`Claude settings installed to: ${CLAUDE_SETTINGS_FILE}`);
-
-    /* const wasRunning = isServiceRunning();
-
-    if (wasRunning) {
-      logger.logInfo('Service is running, restarting...');
-      await restartCommand();
-    } else {
-      logger.logInfo('Service is not running, starting...');
-      await startCommand();
-    } */
 
     console.log('\n========================================');
     console.log('Model configuration complete:');

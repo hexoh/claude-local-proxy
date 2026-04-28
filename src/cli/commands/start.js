@@ -1,23 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import os from 'os';
-import readline from 'readline';
 import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { getConfigPath, promptForConfig, writeConfigFile } from '../../config/index.js';
 import { getLogger } from '../../logger/index.js';
+import { isServiceRunning, ensureAppDir, PID_FILE } from '../common.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const PID_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const PID_FILE = path.join(PID_DIR, 'proxy.pid');
 
 export async function startCommand() {
   const logger = getLogger();
 
   try {
     if (!fs.existsSync(getConfigPath())) {
+      const readline = await import('readline');
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -44,15 +41,10 @@ export async function startCommand() {
       }
     }
 
-    if (fs.existsSync(PID_FILE)) {
-      const pid = parseInt(fs.readFileSync(PID_FILE, 'utf-8'));
-      try {
-        process.kill(pid, 0);
-        logger.logError(`Service is already running (PID: ${pid})`);
-        process.exit(1);
-      } catch (e) {
-        fs.unlinkSync(PID_FILE);
-      }
+    if (isServiceRunning()) {
+      const pid = fs.readFileSync(PID_FILE, 'utf-8');
+      logger.logError(`Service is already running (PID: ${pid})`);
+      process.exit(1);
     }
 
     const cliPath = path.join(__dirname, '../../cli/index.js');
@@ -70,9 +62,7 @@ export async function startCommand() {
 
     logger.logInfo('Service started in background');
 
-    if (!fs.existsSync(PID_DIR)) {
-      fs.mkdirSync(PID_DIR, { recursive: true });
-    }
+    ensureAppDir();
 
     let pidFound = false;
     for (let i = 0; i < 10; i++) {
