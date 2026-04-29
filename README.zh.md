@@ -3,10 +3,10 @@
 # Claude-Local-Proxy
 
 <a href="https://www.npmjs.com/package/claude-local-proxy">
-   <img src="https://img.shields.io/npm/v/claude-local-proxy.svg" alt="npm version">
+   <img src="https://img.shields.io/npm/v/claude-local-proxy.svg?labelColor=red" alt="npm version">
 </a>
 <a href="https://github.com/hexoh/claude-local-proxy/releases">
-   <img src="https://img.shields.io/github/v/release/hexoh/claude-local-proxy.svg" alt="GitHub version">
+   <img src="https://img.shields.io/github/v/release/hexoh/claude-local-proxy.svg?labelColor=green" alt="GitHub version">
 </a>
 <a href="https://github.com/hexoh/claude-local-proxy/releases">
    <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform">
