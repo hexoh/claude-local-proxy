@@ -66,7 +66,7 @@ If no configuration exists, the service will automatically prompt you to configu
 
 ```
 ? Configuration file does not exist. Do you want to configure now? (y/N): y
-? Enter API Key: nvapi-xxxxxxxxxxxxxxxx
+? Enter API Key: xxx-xxxxxxxxxxxxxxxx
 listening on localhost:8888
 ```
 
