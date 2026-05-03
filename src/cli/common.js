@@ -5,6 +5,10 @@ import os from 'os';
 export const APP_DIR = path.join(os.homedir(), '.claude-local-proxy');
 export const PID_FILE = path.join(APP_DIR, 'proxy.pid');
 export const LOG_DIR = path.join(APP_DIR, 'logs');
+export const CONFIG_FILE = path.join(APP_DIR, 'settings.json');
+export const MODELS_FILE = path.join(APP_DIR, 'models.json');
+export const PROXY_SETTINGS_FILE = path.join(APP_DIR, 'claude.settings.json');
+export const DEFAULT_MODELS_FILE = path.join(process.cwd(), 'config', 'models.json');
 
 export const CLAUDE_DIR = path.join(os.homedir(), '.claude');
 export const CLAUDE_SETTINGS_FILE = path.join(CLAUDE_DIR, 'settings.json');

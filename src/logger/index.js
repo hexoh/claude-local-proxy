@@ -2,8 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import net from 'net';
-
-const LOG_DIR = path.join(os.homedir(), '.claude-local-proxy', 'logs');
+import { LOG_DIR } from '../cli/common.js';
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const LOG_RETENTION_DAYS = 7;
 

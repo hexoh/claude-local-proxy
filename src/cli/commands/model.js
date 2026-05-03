@@ -11,10 +11,9 @@ import {
   APP_DIR, 
   CLAUDE_DIR, 
   CLAUDE_SETTINGS_FILE, 
-  CLAUDE_BACKUP_FILE 
+  CLAUDE_BACKUP_FILE,
+  PROXY_SETTINGS_FILE 
 } from '../common.js';
-
-const CLAUDE_PROXY_SETTINGS_FILE = path.join(APP_DIR, 'claude.settings.json');
 
 export async function modelListCommand() {
   const logger = getLogger();
@@ -189,8 +188,8 @@ export async function modelSetupCommand() {
       fs.mkdirSync(APP_DIR, { recursive: true });
     }
 
-    fs.writeFileSync(CLAUDE_PROXY_SETTINGS_FILE, JSON.stringify(claudeSettings, null, 2), 'utf-8');
-    logger.logInfo(`Claude settings saved to: ${CLAUDE_PROXY_SETTINGS_FILE}`);
+    fs.writeFileSync(PROXY_SETTINGS_FILE, JSON.stringify(claudeSettings, null, 2), 'utf-8');
+    logger.logInfo(`Claude settings saved to: ${PROXY_SETTINGS_FILE}`);
 
     if (!fs.existsSync(CLAUDE_DIR)) {
       fs.mkdirSync(CLAUDE_DIR, { recursive: true });
@@ -201,7 +200,7 @@ export async function modelSetupCommand() {
       logger.logInfo(`Original Claude settings backed up to: ${CLAUDE_BACKUP_FILE}`);
     }
 
-    fs.copyFileSync(CLAUDE_PROXY_SETTINGS_FILE, CLAUDE_SETTINGS_FILE);
+    fs.copyFileSync(PROXY_SETTINGS_FILE, CLAUDE_SETTINGS_FILE);
     logger.logInfo(`Claude settings installed to: ${CLAUDE_SETTINGS_FILE}`);
 
     console.log('\n========================================');
