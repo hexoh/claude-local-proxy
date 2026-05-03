@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/hexoh/claude-local-proxy/compare/v1.0.1...v1.1.0) (2026-05-03)
+
+
+### Features
+
+* implement model configuration setup and streamline settings installation ([1ac8e9f](https://github.com/hexoh/claude-local-proxy/commit/1ac8e9f486b926616ea559c688ee555fbf10ceae))
+
+
+### Bug Fixes
+
+* remove .env.example from .gitignore ([822ace7](https://github.com/hexoh/claude-local-proxy/commit/822ace70a0a22505a973b03329cd3b3629575f1a))
+* restore .env.example to .gitignore ([aa39c75](https://github.com/hexoh/claude-local-proxy/commit/aa39c751c27f30e5305ea08f13190b94f564a823))
+* update badge URLs in README files for consistency ([5b77235](https://github.com/hexoh/claude-local-proxy/commit/5b772358c7a635e4b6524d3d0f330447de069fa4))
+
 ### [1.0.1](https://github.com/hexoh/claude-local-proxy/compare/v1.0.0...v1.0.1) (2026-04-27)
 
 
