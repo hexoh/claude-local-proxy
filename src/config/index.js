@@ -2,11 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import readline from 'readline';
-
-const CONFIG_DIR = path.join(os.homedir(), '.claude-local-proxy');
-const CONFIG_FILE = path.join(CONFIG_DIR, 'settings.json');
-const MODELS_FILE = path.join(CONFIG_DIR, 'models.json');
-const DEFAULT_MODELS_FILE = path.join(process.cwd(), 'config', 'models.json');
+import { APP_DIR, CONFIG_FILE, MODELS_FILE, DEFAULT_MODELS_FILE } from '../cli/common.js';
 
 let config = {
   PROXY_URL: 'localhost:8888',
@@ -27,8 +23,8 @@ function configExists() {
 }
 
 function createConfigDir() {
-  if (!fs.existsSync(CONFIG_DIR)) {
-    fs.mkdirSync(CONFIG_DIR, { recursive: true });
+  if (!fs.existsSync(APP_DIR)) {
+    fs.mkdirSync(APP_DIR, { recursive: true });
   }
   ensureModelsFile();
 }

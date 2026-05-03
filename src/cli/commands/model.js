@@ -1,20 +1,11 @@
 import fs from 'fs';
-import path from 'path';
 import readline from 'readline';
 import { getLogger } from '../../logger/index.js';
 import { readConfigFile, readModelsFile, writeModelsFile, modelExists, getConfigPath } from '../../config/index.js';
 import { startCommand } from './start.js';
 import { restartCommand } from './restart.js';
 import { keySelect } from '../utils.js';
-import { 
-  isServiceRunning, 
-  APP_DIR, 
-  CLAUDE_DIR, 
-  CLAUDE_SETTINGS_FILE, 
-  CLAUDE_BACKUP_FILE 
-} from '../common.js';
-
-const CLAUDE_PROXY_SETTINGS_FILE = path.join(APP_DIR, 'claude.settings.json');
+import { installClaudeSettings } from '../common.js';
 
 export async function modelListCommand() {
   const logger = getLogger();
@@ -141,7 +132,7 @@ async function promptForModelSelection(models, modelName, defaultValue) {
   return selected.replace(' (default)', '');
 }
 
-export async function modelSetupCommand() {
+export async function modelSetupCommand(exitAfterComplete = true) {
   const logger = getLogger();
 
   try {
@@ -185,24 +176,7 @@ export async function modelSetupCommand() {
       includeCoAuthoredBy: false
     };
 
-    if (!fs.existsSync(APP_DIR)) {
-      fs.mkdirSync(APP_DIR, { recursive: true });
-    }
-
-    fs.writeFileSync(CLAUDE_PROXY_SETTINGS_FILE, JSON.stringify(claudeSettings, null, 2), 'utf-8');
-    logger.logInfo(`Claude settings saved to: ${CLAUDE_PROXY_SETTINGS_FILE}`);
-
-    if (!fs.existsSync(CLAUDE_DIR)) {
-      fs.mkdirSync(CLAUDE_DIR, { recursive: true });
-    }
-
-    if (!fs.existsSync(CLAUDE_BACKUP_FILE) && fs.existsSync(CLAUDE_SETTINGS_FILE)) {
-      fs.copyFileSync(CLAUDE_SETTINGS_FILE, CLAUDE_BACKUP_FILE);
-      logger.logInfo(`Original Claude settings backed up to: ${CLAUDE_BACKUP_FILE}`);
-    }
-
-    fs.copyFileSync(CLAUDE_PROXY_SETTINGS_FILE, CLAUDE_SETTINGS_FILE);
-    logger.logInfo(`Claude settings installed to: ${CLAUDE_SETTINGS_FILE}`);
+    installClaudeSettings(claudeSettings);
 
     console.log('\n========================================');
     console.log('Model configuration complete:');
@@ -210,10 +184,12 @@ export async function modelSetupCommand() {
     console.log(`  ANTHROPIC_DEFAULT_SONNET_MODEL -> ${sonnetModel}`);
     console.log(`  ANTHROPIC_DEFAULT_OPUS_MODEL    -> ${opusModel}`);
     console.log('========================================');
-    console.log('Please start or restart Claude Code to apply the configuration.');
+    console.log('Please restart Claude Code to apply the configuration.');
     console.log('========================================\n');
 
-    process.exit(0);
+    if (exitAfterComplete) {
+      process.exit(0);
+    }
 
   } catch (err) {
     logger.logError(`Setup failed: ${err.message}`);
