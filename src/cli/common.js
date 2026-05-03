@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
+import { getLogger } from '../logger/index.js';
 
 export const APP_DIR = path.join(os.homedir(), '.claude-local-proxy');
 export const PID_FILE = path.join(APP_DIR, 'proxy.pid');
@@ -63,4 +64,37 @@ export function waitForProcessToStop(pid, maxAttempts = 10, intervalMs = 500) {
       }
     }, intervalMs);
   });
+}
+
+export function installClaudeSettings(claudeSettings) {
+  const logger = getLogger();
+
+  if (!claudeSettings && fs.existsSync(PROXY_SETTINGS_FILE)) {
+    claudeSettings = JSON.parse(fs.readFileSync(PROXY_SETTINGS_FILE, 'utf-8'));
+  }
+
+  if (!claudeSettings) {
+    return false;
+  }
+
+  if (!fs.existsSync(APP_DIR)) {
+    fs.mkdirSync(APP_DIR, { recursive: true });
+  }
+
+  fs.writeFileSync(PROXY_SETTINGS_FILE, JSON.stringify(claudeSettings, null, 2), 'utf-8');
+  logger.logInfo(`Claude settings saved to: ${PROXY_SETTINGS_FILE}`);
+
+  if (!fs.existsSync(CLAUDE_DIR)) {
+    fs.mkdirSync(CLAUDE_DIR, { recursive: true });
+  }
+
+  if (!fs.existsSync(CLAUDE_BACKUP_FILE) && fs.existsSync(CLAUDE_SETTINGS_FILE)) {
+    fs.copyFileSync(CLAUDE_SETTINGS_FILE, CLAUDE_BACKUP_FILE);
+    logger.logInfo(`Original Claude settings backed up to: ${CLAUDE_BACKUP_FILE}`);
+  }
+
+  fs.copyFileSync(PROXY_SETTINGS_FILE, CLAUDE_SETTINGS_FILE);
+  logger.logInfo(`Claude settings installed to: ${CLAUDE_SETTINGS_FILE}`);
+
+  return true;
 }

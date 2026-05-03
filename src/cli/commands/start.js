@@ -4,7 +4,8 @@ import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { getConfigPath, promptForConfig, writeConfigFile } from '../../config/index.js';
 import { getLogger } from '../../logger/index.js';
-import { isServiceRunning, ensureAppDir, PID_FILE } from '../common.js';
+import { isServiceRunning, ensureAppDir, PID_FILE, PROXY_SETTINGS_FILE, installClaudeSettings } from '../common.js';
+import { modelSetupCommand } from './model.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,6 +40,29 @@ export async function startCommand() {
         logger.logError('Configuration file does not exist. Please run: clp config');
         process.exit(1);
       }
+    }
+
+    if (!fs.existsSync(PROXY_SETTINGS_FILE)) {
+      const readline = await import('readline');
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+
+      const answer = await new Promise(resolve => {
+        rl.question('Claude model configuration does not exist. Do you want to configure now? (y/N): ', resolve);
+      });
+      rl.close();
+
+      if (answer.toLowerCase() === 'y') {
+        console.log('');
+        await modelSetupCommand();
+      } else {
+        logger.logError('Claude model configuration does not exist. Please run: clp model setup');
+        process.exit(1);
+      }
+    } else {
+      installClaudeSettings();
     }
 
     if (isServiceRunning()) {
